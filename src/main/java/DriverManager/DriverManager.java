@@ -1,5 +1,7 @@
 package DriverManager;
 
+import java.io.File;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -65,12 +67,19 @@ public class DriverManager {
 
 		switch (browser.toLowerCase()) {
 		case "chrome":
-			WebDriverManager.chromedriver().setup();
+			//WebDriverManager.chromedriver().setup();
+			String currentDir = System.getProperty("user.dir");
+	        
+	        // Set the path to chromedriver relative to the current working directory
+	        String chromeDriverPath = currentDir + System.getProperty("file.separator")+"chromedriver.exe";
+	        
+	        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 			ChromeOptions chromeOptions = new ChromeOptions();
 			if (isHeadless)
 				chromeOptions.addArguments("--headless=new", "--window-size=1920,1080");
 			driver.set(new ChromeDriver(chromeOptions));
 			break;
+			
 
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
