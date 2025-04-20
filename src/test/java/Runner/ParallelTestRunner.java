@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "Features",
         glue = { "StepDefinitions", "Hooks" },
-        tags = "@SignUP",
+        tags = "@SignUPNegativeCases",
         plugin = {
             "pretty",
             "html:target/cucumber-reports.html",
