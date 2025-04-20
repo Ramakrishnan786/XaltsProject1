@@ -1,0 +1,6 @@
+{
+	"ErrorMessages": {
+		"PasswordErrorMessage": "Password must contain atelast one lowercase letter, uppercase letter, number and special character and be a minimum of 8 characters in length",
+		"ReregisterAlertMessaage":"Provided E-Mail is already in use"
+	}
+}
