@@ -5,11 +5,11 @@ on:
     branches: [ Automate1 ]
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'  # Runs every 5 minutes
+    - cron: '*/5 * * * *'  # Every 5 minutes
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -21,8 +21,10 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Give permission to chromedriver (if used)
-        run: chmod +x ./Xalts_Project/chromedriver.exe
+      - name: Give permission to chromedriver (Windows workaround)
+        run: |
+          echo Granting permission to chromedriver.exe
+          icacls .\Xalts_Project\chromedriver.exe /grant Everyone:F
 
       - name: Run Tests
         run: mvn clean test
@@ -31,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cucumber-reports
-          path: test-output/**/*.html
+          path: test-output/**/*.html  # Update this to actual report path if needed
